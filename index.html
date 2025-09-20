@@ -118,8 +118,20 @@
         }
         
         .pdf-img {
-            max-height: 100%;
             display: block;
+        }
+        
+        /* Landscape images - fit height, allow horizontal scrolling */
+        .pdf-img.landscape {
+            max-height: 100%;
+            width: auto;
+        }
+        
+        /* Portrait images - fit width, allow vertical scrolling */
+        .pdf-img.portrait {
+            width: 100%;
+            height: auto;
+            max-height: none;
         }
         
         /* Section content styling */
@@ -261,6 +273,17 @@
                 img.className = 'pdf-img';
                 img.src = imgFile;
                 img.alt = title;
+                
+                // Detect orientation when image loads and apply appropriate class
+                img.onload = function() {
+                    if (this.naturalWidth > this.naturalHeight) {
+                        // Landscape: width > height
+                        this.classList.add('landscape');
+                    } else {
+                        // Portrait: height >= width
+                        this.classList.add('portrait');
+                    }
+                };
                 
                 container.appendChild(img);
                 contentBody.appendChild(container);
