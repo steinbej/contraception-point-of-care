@@ -333,24 +333,54 @@
                     // Load content based on section
                     const contentBody = document.getElementById('section-content');
                     
-                    // Placeholder content - you'll replace these later
                     switch(section) {
                         case 'disclaimer':
                             contentBody.innerHTML = `
-                                <p>Disclaimer content will be added here.</p>
-                                <p>This is placeholder text that you'll replace with your specific disclaimer content.</p>
+                                <p>Dear Colleague,</p>
+                                <p>This tool provides decision-support information to assist you in considering contraception appropriate for your patient. Information is from the primary medical literature, textbooks, guidelines, and authoritative medical organizations (see references). The author of the app has tried to faithfully present the guidance of others and not to substitute their own judgement. If you believe there is an inaccuracy in the information presented, please contact me immediately at About App tab email, <a href="mailto:jds.pocapps@gmail.com">jds.pocapps@gmail.com</a>.</p>
+                                <p>This app is no substitute for knowledge, training, and experience in contraception. The app is merely a quick reference of reminders and updates on material you should already be familiar with.</p>
+                                <p>And like any other general guide, these resources suggest how you might manage the average patient. But, this guide may not tell you how to manage the single unique patient at hand right now. You must have a thorough knowledge of contraception care. You must have awareness of your own local standards and circumstances. And you must do your own thinking.</p>
                             `;
                             break;
                         case 'about':
                             contentBody.innerHTML = `
-                                <p>About App content will be added here.</p>
-                                <p>This is placeholder text that you'll replace with your specific about content.</p>
+                                <p>Written to put quick reference information about contraception in the hands of clinicians at the point of care.</p>
+                                <p><strong>CONTENT & DESIGN:</strong><br>
+                                Reproductive Health Access Project & Joshua Steinberg MD, UHS Wilson Family Medicine Residency, Binghamton NY</p>
+                                <p><strong>PROGRAMMING, DESIGN, PROJECT MGMT:</strong><br>
+                                Joshua Steinberg MD</p>
+                                <p><strong>VERSION:</strong><br>
+                                2.60</p>
+                                <p><strong>BUILD:</strong><br>
+                                1</p>
+                                <p><strong>RELEASE:</strong><br>
+                                September, 2025</p>
+                                <p><strong>FEEDBACK:</strong><br>
+                                <a href="mailto:jds.pocapps@gmail.com">jds.pocapps@gmail.com</a></p>
                             `;
                             break;
                         case 'references':
                             contentBody.innerHTML = `
-                                <p>References content will be added here.</p>
-                                <p>This is placeholder text that you'll replace with your specific references content.</p>
+                                <p>Reproductive Health Access Project at: <a href="https://www.reproductiveaccess.org" target="_blank">www.reproductiveaccess.org</a></p>
+                                <p>Planned Parenthood contraceptive method information at: <a href="https://www.plannedparenthood.org/learn/birth-control" target="_blank">www.plannedparenthood.org/learn/birth-control</a></p>
+                                <p>World Health Organization contraceptive method information at: <a href="https://www.who.int/en/news-room/fact-sheets/detail/family-planning-contraception" target="_blank">www.who.int/en/news-room/fact-sheets/detail/family-planning-contraception</a></p>
+                                <p>CDC Contraceptive Guidance for Health Care Providers at: <a href="https://www.cdc.gov/reproductivehealth/contraception/contraception_guidance.htm" target="_blank">www.cdc.gov/reproductivehealth/contraception/contraception_guidance.htm</a></p>
+                                <p>U.S. Selected Practice Recommendations for Contraceptive Use, 2024, Curtis KM, Nguyen AT, Tepper NK, et. al., US Department of Health and Human Services/Centers for Disease Control and Prevention, MMWR Aug. 8, 2024, Vol. 73, No. 3.</p>
+                                <p>U.S. Selected Practice Recommendations for Contraceptive Use, 2016, Curtis KM, Jatlaoui TC, Tepper NK, et. al., US Department of Health and Human Services/Centers for Disease Control and Prevention, MMWR July 29, 2016, Vol. 65, No. 4.</p>
+                                <p>Bradley S, et. al. "Contaceptive Efficacy", chapter 5, in Kowal D, et. al., "Contraceptive Technology: 22nd Revised Edition", Jones & Bartlett Learning, 2023.</p>
+                                <p>Trussell J, et. al. "Emergency Contraception", chapter 6, and "Contaceptive Efficacy", chapter 26, in Hatcher RA, et. al., "Contraceptive Technology: 21st Revised Edition", Ardent Media, 2018.</p>
+                                <p>Cerel-Shul SL, Yeager BF, "Update on Oral Contraceptive Pills", American Family Physician, vol. 60, no. 7, p. 2073-2084, Nov. 1, 1999.</p>
+                                <p>Dickey RP, "Managing Contraceptive Pill Patients: 15th Edition", EMIS, 2014.</p>
+                                <p>Gold M, "Prescribing and Managing Oral Contraceptive Pills and Emergency Contraception for Adolescents", Pediatric Clinics of North America. August 1999;46(4): 695-718.</p>
+                                <p>Lesnewski R, Prine L, "Initiating Hormonal Contraception", American Family Physician, vol. 74, no. 1, p. 105-112, Jul 1, 2006.</p>
+                                <p>Nelson AL, "Extended-Cycle Oral Contraception", Treat Endocrinol 2005: 4 (3):139-145.</p>
+                                <p>Schlaff WD, Lynch AM, et. al., "Manipulation of the pill-free interval in oral contraceptive pill users: the effect of follicular suppression", Am J Obstet Gynecol. 2004:190(4):943-951.</p>
+                                <p>Zieman M, Hatcher RA, et. al., "Managing Contraception for Your Pocket 13th Edition", Ardnet Media, 2015.</p>
+                                <p>Smoley BA, Robinson CM, "Natural Family Planning", American Family Physician, vol. 86, no. 10, p. 924-928, Nov. 15, 2012.</p>
+                                <p>Turok D, et. al., "Levonorgestrel vs. Copper Intrauterine Devices for Emergency Contraception", New England Journal Medicine, vol. 384, no. 4, p. 335-344, Jan, 28, 2021.</p>
+                                <p>Paulen, ME, Curtis KM, When can a woman have repeat progestogen-only injectables--depot medroxyprogesterone acetate or norethisterone enantate? Contraception, vol. 80, 2009, pg. 391-408.</p>
+                                <p>Depo-Provera prescribing information, Pfizer Inc., NY, NY, USA, revised January, 2015. Accessed at www.Pfizer.com Oct. 2, 2015.</p>
+                                <p>Depo-Provera product monograph, Pfizer Canada Inc., Kirkland, Quebec, Canada, revised December 23, 2013. Accessed at www.Pfizer.ca Oct. 2, 2015.</p>
                             `;
                             break;
                     }
