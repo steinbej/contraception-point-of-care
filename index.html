@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Contraception Point-of-Care</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: #EAEAEA;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        header {
+            background-color: white;
+            color: black;
+            text-align: center;
+            padding: 16px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        h1 {
+            font-size: 20px;
+            font-weight: 500;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding-bottom: 80px; /* Space for footer */
+        }
+        
+        .grid-buttons {
+            margin-top: 16px;
+        }
+        
+        .grid-button {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background-color: white;
+            border: none;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+            font-size: 16px;
+            color: black;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .grid-button:active {
+            background-color: #f0f0f0;
+        }
+        
+        .content-view {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 200;
+            display: none;
+            flex-direction: column;
+        }
+        
+        .content-header {
+            background-color: white;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            z-index: 201;
+        }
+        
+        .content-title {
+            font-size: 18px;
+            text-align: center;
+            width: 100%;
+            font-weight: 500;
+        }
+        
+        .back-button {
+            color: #007AFF;
+            font-size: 18px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            padding: 0;
+            width: 60px;
+        }
+        
+        .content-body {
+            flex-grow: 1;
+            overflow: auto;
+            background-color: white;
+        }
+        
+        /* PDF object styling */
+        .pdf-container {
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .pdf-img {
+            max-height: 100%;
+            display: block;
+        }
+        
+        /* Section content styling */
+        #section-content {
+            padding: 16px;
+            background-color: #EAEAEA;
+            line-height: 1.6;
+        }
+        
+        #section-content p {
+            margin-bottom: 16px;
+        }
+        
+        #section-content a {
+            color: #007AFF;
+            text-decoration: none;
+        }
+        
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background-color: #f9f9f9;
+            border-top: 1px solid #ddd;
+            padding: 8px 0;
+            z-index: 100;
+        }
+        
+        .footer-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px;
+            color: #777;
+            text-decoration: none;
+            font-size: 11px;
+            width: 25%;
+            text-align: center;
+        }
+        
+        .footer-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+        
+        .footer-button.active {
+            color: #007AFF;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Contraception Point-of-Care</h1>
+    </header>
+    
+    <div class="container" id="main-screen">
+        <div class="grid-buttons">
+            <button class="grid-button" data-title="Medical Eligibility Criteria" data-img="medical-eligibility-criteria.jpg">Medical Eligibility Criteria</button>
+            <button class="grid-button" data-title="Quick Start Algorithms" data-img="quick-start-algorithms.jpg">Quick Start Algorithms</button>
+            <button class="grid-button" data-title="OCP & Other Method Formulations" data-img="ocp-other-method-formulations.jpg">OCP & Other Method Formulations</button>
+            <button class="grid-button" data-title="How to Choose/Adjust Pill" data-img="how-to-choose-adjust-pill.jpg">How to Choose/Adjust Pill</button>
+            <button class="grid-button" data-title="Contraception STEPS table" data-img="contraception-steps-table.jpg">Contraception STEPS table</button>
+            <button class="grid-button" data-title="Emerg Contrac (EC) STEPS table" data-img="emerg-contrac-ec-steps-table.jpg">Emerg Contrac (EC) STEPS table</button>
+            <button class="grid-button" data-title="Fertility Awareness STEPS table" data-img="fertility-awareness-steps-table.jpg">Fertility Awareness STEPS table</button>
+            <button class="grid-button" data-title="Method Effectiveness" data-img="method-effectiveness.jpg">Method Effectiveness</button>
+            <button class="grid-button" data-title="Missed-Late Pills-Patch-Ring" data-img="missed-late-pills-patch-ring.jpg">Missed-Late Pills-Patch-Ring</button>
+            <button class="grid-button" data-title="How to Switch Methods" data-img="how-to-switch-methods.jpg">How to Switch Methods</button>
+            <button class="grid-button" data-title="Contraception Prerequisites" data-img="contraception-prerequisites.jpg">Contraception Prerequisites</button>
+            <button class="grid-button" data-title="Reasonably Certain Not Pregnant" data-img="reasonably-certain-not-pregnant.jpg">Reasonably Certain Not Pregnant</button>
+            <button class="grid-button" data-title="Mgmt Irreg Bleeding on Contrac" data-img="mgmt-irreg-bleeding-on-contrac.jpg">Mgmt Irreg Bleeding on Contrac</button>
+            <button class="grid-button" data-title="ⓘ about S.T.E.P.S. approach" data-img="about-steps-approach.jpg">ⓘ about S.T.E.P.S. approach</button>
+        </div>
+    </div>
+    
+    <div class="content-view" id="pdf-viewer">
+        <div class="content-header">
+            <button class="back-button">Back</button>
+            <div class="content-title" id="content-title">Guide Title</div>
+            <div style="width: 60px;"></div> <!-- Spacer for alignment -->
+        </div>
+        <div class="content-body" id="content-body">
+            <!-- PDF content will be embedded here -->
+        </div>
+    </div>
+    
+    <!-- Section content view -->
+    <div class="content-view" id="content-section">
+        <div class="content-header">
+            <button class="back-button">Back</button>
+            <div class="content-title" id="section-title">Section Title</div>
+            <div style="width: 60px;"></div> <!-- Spacer for alignment -->
+        </div>
+        <div class="content-body" id="section-content">
+            <!-- Section content will be inserted here -->
+        </div>
+    </div>
+
+    <footer>
+        <a href="#" class="footer-button active" data-section="home">
+            <div class="footer-icon">🏠</div>
+            <div class="footer-text">Home</div>
+        </a>
+        <a href="#" class="footer-button" data-section="disclaimer">
+            <div class="footer-icon">⚠️</div>
+            <div class="footer-text">Disclaimer</div>
+        </a>
+        <a href="#" class="footer-button" data-section="about">
+            <div class="footer-icon">ℹ️</div>
+            <div class="footer-text">About App</div>
+        </a>
+        <a href="#" class="footer-button" data-section="references">
+            <div class="footer-icon">📚</div>
+            <div class="footer-text">References</div>
+        </a>
+    </footer>
+
+    <script>
+        // Setup the grid buttons
+        document.querySelectorAll('.grid-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const title = this.getAttribute('data-title');
+                const imgFile = this.getAttribute('data-img');
+                
+                // Set the title
+                document.getElementById('content-title').textContent = title;
+                
+                // Create the embedded view
+                const contentBody = document.getElementById('content-body');
+                contentBody.innerHTML = ''; // Clear previous content
+                
+                // Create a container div with scrolling
+                const container = document.createElement('div');
+                container.className = 'pdf-container';
+                
+                // Use an image instead of PDF for better control
+                const img = document.createElement('img');
+                img.className = 'pdf-img';
+                img.src = imgFile;
+                img.alt = title;
+                
+                container.appendChild(img);
+                contentBody.appendChild(container);
+                
+                // Show the PDF viewer
+                document.getElementById('pdf-viewer').style.display = 'flex';
+                document.getElementById('main-screen').style.display = 'none';
+                document.getElementById('content-section').style.display = 'none';
+                
+                // Update active footer button
+                document.querySelectorAll('.footer-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelector('[data-section="home"]').classList.add('active');
+            });
+        });
+        
+        // Setup the footer buttons
+        document.querySelectorAll('.footer-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const section = this.getAttribute('data-section');
+                
+                // Highlight active button
+                document.querySelectorAll('.footer-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                if (section === 'home') {
+                    // Return to main screen
+                    document.getElementById('pdf-viewer').style.display = 'none';
+                    document.getElementById('content-section').style.display = 'none';
+                    document.getElementById('main-screen').style.display = 'block';
+                } else {
+                    // Show content section
+                    document.getElementById('main-screen').style.display = 'none';
+                    document.getElementById('pdf-viewer').style.display = 'none';
+                    
+                    // Setup content section
+                    const contentSection = document.getElementById('content-section');
+                    contentSection.style.display = 'flex';
+                    
+                    // Set title and content
+                    document.getElementById('section-title').textContent = this.querySelector('.footer-text').textContent;
+                    
+                    // Load content based on section
+                    const contentBody = document.getElementById('section-content');
+                    
+                    // Placeholder content - you'll replace these later
+                    switch(section) {
+                        case 'disclaimer':
+                            contentBody.innerHTML = `
+                                <p>Disclaimer content will be added here.</p>
+                                <p>This is placeholder text that you'll replace with your specific disclaimer content.</p>
+                            `;
+                            break;
+                        case 'about':
+                            contentBody.innerHTML = `
+                                <p>About App content will be added here.</p>
+                                <p>This is placeholder text that you'll replace with your specific about content.</p>
+                            `;
+                            break;
+                        case 'references':
+                            contentBody.innerHTML = `
+                                <p>References content will be added here.</p>
+                                <p>This is placeholder text that you'll replace with your specific references content.</p>
+                            `;
+                            break;
+                    }
+                }
+            });
+        });
+        
+        // Setup the back button
+        document.querySelectorAll('.back-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Hide all views
+                document.getElementById('pdf-viewer').style.display = 'none';
+                document.getElementById('content-section').style.display = 'none';
+                
+                // Show main screen
+                document.getElementById('main-screen').style.display = 'block';
+                
+                // Reset active footer button
+                document.querySelectorAll('.footer-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelector('[data-section="home"]').classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
